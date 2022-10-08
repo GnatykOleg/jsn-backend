@@ -1,17 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const controll = require('../../controllers/contacts');
+const controll = require('../../controllers/heros');
+
 const { controllerWrapper } = require('../../helpers');
-const { validateBody } = require('../../middleware');
+const { validateBody, upload } = require('../../middleware');
 
 const { schemas } = require('../../models/heros');
 
 router.get('/', controllerWrapper(controll.getAllHeros));
 
+// НЕ ЗАНЮ НУЖНО ЛИ МНЕ БУДЕТЬ ПОЛУЧАТЬ ГЕРОЯ ПО ID
 router.get('/:id', controllerWrapper(controll.getHeroById));
 
 router.post(
     '/',
+    upload.single('images'),
     validateBody(schemas.addSchema),
     controllerWrapper(controll.addHero)
 );
@@ -29,6 +32,7 @@ router.put(
 
 router.patch(
     '/:id/favorite',
+    // upload.single('images'),
     validateBody(schemas.updateFavoriteSchema),
     controllerWrapper(controll.updateFavorite)
 );

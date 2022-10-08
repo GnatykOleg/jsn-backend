@@ -5,17 +5,17 @@ const Joi = require('joi');
 
 const herosSchema = new Schema(
     {
-        nickname: {
+        nickName: {
             type: String,
             required: [true, 'Set nickname for hero'],
             minLength: [3, 'Must be at least 3 letters, your value: {VALUE}'],
         },
-        real_name: {
+        realName: {
             type: String,
             required: [true, 'Set real name for hero'],
             minLength: [3, 'Must be at least 3 letters, your value: {VALUE}'],
         },
-        origin_description: {
+        originDescription: {
             type: String,
             required: [true, 'Set description for hero'],
             minLength: [3, 'Must be at least 3 letters, your value: {VALUE}'],
@@ -25,20 +25,24 @@ const herosSchema = new Schema(
             required: [true, 'Set superpowers for hero'],
             minLength: [3, 'Must be at least 3 letters, your value: {VALUE}'],
         },
-        catch_phrase: {
+        catchPhrase: {
             type: String,
             required: [true, 'Set phrase for hero'],
             minLength: [3, 'Must be at least 3 letters, your value: {VALUE}'],
         },
-        images: {
-            // РАЗОБРАТСЯ КАК СДЕЛАТЬ КАРТИНКИ
-            type: String,
-            required: [true, 'Set image for hero'],
-            // minLength: [3, 'Must be at least 3 letters, your value: {VALUE}'],
-        },
+        // images: {
+        //     // РАЗОБРАТСЯ КАК СДЕЛАТЬ КАРТИНКИ
+        //     type: String,
+        //     required: [true, 'Set image for hero'],
+        //     minLength: [3, 'Must be at least 3 letters, your value: {VALUE}'],
+        // },
         // Оставлять ли это поле нужно подумать
+        // ВЕРНУТЬ БУЛЬ СЕЙЧАС СТРОКА
         favorite: {
-            type: Boolean,
+            // type: Boolean,
+            type: String,
+
+            required: [true, 'Set FAVORITE for hero'],
 
             default: false,
         },
@@ -48,15 +52,16 @@ const herosSchema = new Schema(
 );
 
 const addSchema = Joi.object({
-    nickname: Joi.string().required(),
-    real_name: Joi.string().required(),
-    origin_description: Joi.string().required(),
+    nickName: Joi.string().required(),
+    realName: Joi.string().required(),
+    originDescription: Joi.string().required(),
     superpowers: Joi.string().required(),
-    catch_phrase: Joi.string().required(),
+    catchPhrase: Joi.string().required(),
     // ОПЯТЬ ТАКИ РАЗОБРАТСЯ С КАРТИНКАМИ ПОКА ТЕКСТ
-    images: Joi.string().required(),
-
-    favorite: Joi.boolean(),
+    // images: Joi.string().required(),
+    // вернуть буль сейчас строка
+    favorite: Joi.string().required(),
+    // favorite: Joi.boolean(),
 });
 
 const updateHeroInformationSchema = Joi.object({
@@ -66,8 +71,7 @@ const updateHeroInformationSchema = Joi.object({
     superpowers: Joi.string(),
     catch_phrase: Joi.string(),
     // ОПЯТЬ ТАКИ РАЗОБРАТСЯ С КАРТИНКАМИ ПОКА ТЕКСТ
-    images: Joi.string(),
-
+    // images: Joi.string(),
     favorite: Joi.boolean(),
 });
 
