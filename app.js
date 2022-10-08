@@ -2,8 +2,6 @@ const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
 
-require('dotenv').config();
-
 const herosRouter = require('./routes/api/heros');
 
 const app = express();
