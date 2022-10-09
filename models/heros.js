@@ -31,10 +31,26 @@ const herosSchema = new Schema(
             minLength: [3, 'Must be at least 3 letters, your value: {VALUE}'],
         },
         // images: {
+        //     fieldname: String,
         //     // РАЗОБРАТСЯ КАК СДЕЛАТЬ КАРТИНКИ
+        //     // type: Object,
+        //     // type: String,
+        //     // required: [true, 'Set image for hero'],
+        //     // required: true,
+        //     // minLength: [3, 'Must be at least 3 letters, your value: {VALUE}'],
+        // },
+        imageUrl: {
+            type: String,
+        },
+        file: {},
+        data: {},
+
+        // images: {
+        //     // type: Object,
+        //     // type: Array,
+        // },
+        // path: {
         //     type: String,
-        //     required: [true, 'Set image for hero'],
-        //     minLength: [3, 'Must be at least 3 letters, your value: {VALUE}'],
         // },
         // Оставлять ли это поле нужно подумать
         // ВЕРНУТЬ БУЛЬ СЕЙЧАС СТРОКА
@@ -79,15 +95,29 @@ const updateFavoriteSchema = Joi.object({
     favorite: Joi.boolean().required(),
 });
 
+// const imgSchema = Joi.object({
+//     images: {
+//         // РАЗОБРАТСЯ КАК СДЕЛАТЬ КАРТИНКИ
+//         type: String,
+//         // required: [true, 'Set image for hero'],
+//         // required: true,
+//         // minLength: [3, 'Must be at least 3 letters, your value: {VALUE}'],
+//     },
+//     // favorite: Joi.boolean().required(),
+// });
+
 const schemas = {
     addSchema,
     updateFavoriteSchema,
     updateHeroInformationSchema,
+    // imgSchema,
 };
 
 // Миддлавара котоаря срабатывает на ошибке
 herosSchema.post('save', handleSaveErrors);
 
 const Hero = model('hero', herosSchema);
+
+// const HeroImg = model('hero', imgSchema);
 
 module.exports = { Hero, schemas };

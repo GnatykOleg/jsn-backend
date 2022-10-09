@@ -11,6 +11,7 @@ const multerConfig = multer.diskStorage({
         cb(null, file.originalname);
     },
 
+    // УКАЗАТЬ РАЗМЕР ФАЙЛА
     limits: {
         fileSize: 20480000,
     },
