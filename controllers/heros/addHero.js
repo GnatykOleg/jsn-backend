@@ -1,52 +1,33 @@
 const { Hero } = require('../../models/heros');
-// const path = require('path');
-// const fs = require('fs/promises');
-
-// const imagesDir = path.join(__dirname, '../../', 'public', 'heros');
+const path = require('path');
+const fs = require('fs/promises');
 
 const addHero = async (req, res, next) => {
-    // const {
-    //     path: tempUpload,
-    //     originalname,
-    //     // filename
-    // } = req.file;
-    console.log('req.file', req.file);
+    const { path: tempUpload, originalname } = req.files[0];
 
-    const {
-        nickName,
-        realName,
-        originDescription,
-        superpowers,
-        catchPhrase,
-        favorite,
-        // file,
-        // data,
-    } = req.body;
+    const resultUpload = path.join(
+        __dirname,
+        '../../',
+        'public',
+        'heros',
+        originalname
+    );
+
+    // const heros = [];
 
     try {
-        // const resultUpload = path.join(imagesDir, originalname);
-        // await fs.rename(tempUpload, resultUpload);
-        // const imageUrl = path.join('public', 'heros', originalname);
+        const newHero = {
+            ...req.body,
+            Images: req.files,
+        };
 
-        const result = await Hero.create({
-            // imageUrl,
-            nickName,
-            realName,
-            originDescription,
-            superpowers,
-            catchPhrase,
-            favorite,
-            // file,
-            // data,
-        });
-        res.status(201).json({
-            status: 'success',
-            code: 201,
-            result,
-        });
+        fs.rename(tempUpload, resultUpload);
+
+        const result = await Hero.create(newHero);
+
+        res.status(201).json(result);
     } catch (error) {
-        // await fs.unlink(tempUpload);
-        // throw error;
+        await fs.unlink(tempUpload);
     }
 };
 

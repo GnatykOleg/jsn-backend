@@ -11,7 +11,7 @@ const deleteHeroById = async (req, res, next) => {
     if (!result) {
         throw RequestError(404, 'Not found');
     }
-    res.json({ message: `contact deleted` });
+    res.json({ message: `hero deleted` });
 };
 
 module.exports = deleteHeroById;

@@ -2,6 +2,8 @@ const { RequestError } = require('../../helpers');
 const { Hero } = require('../../models/heros');
 const { isValidObjectId } = require('mongoose');
 const updateHeroById = async (req, res, next) => {
+    console.log('req.params', req.params);
+    console.log('req.body', req.body);
     const { id } = req.params;
     const isValidId = isValidObjectId(id);
     if (!isValidId) {
