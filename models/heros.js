@@ -33,10 +33,9 @@ const herosSchema = new Schema(
             minLength: [3, 'Must be at least 3 letters, your value: {VALUE}'],
         },
         Images: {
-            type: Array,
-            required: true,
+            // type: Array,
+            // required: true,
         },
-        // ВЕРНУТЬ БУЛЬ СЕЙЧАС СТРОКА
     },
 
     { versionKey: false, timestamps: true }

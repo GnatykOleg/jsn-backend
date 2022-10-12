@@ -5,7 +5,7 @@ const controll = require('../../controllers/heros');
 const { controllerWrapper } = require('../../helpers');
 const {
     validateBody,
-    upload,
+    multerUpload,
     // upload,
 } = require('../../middleware');
 
@@ -21,7 +21,7 @@ router.post(
     // ОБЯЗАТЕЛЬНО УКАЗАТЬ ПРАВИЛЬНЫЙ ПУТЬ
     // upload.single('Images'),
     // 8 это количество файйлов
-    upload.array('Images', 8),
+    multerUpload.array('Images', 8),
     validateBody(schemas.addSchema),
     controllerWrapper(controll.addHero)
 );

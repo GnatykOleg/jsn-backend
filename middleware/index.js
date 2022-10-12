@@ -1,7 +1,7 @@
 const validateBody = require('./validateBody');
-const upload = require('./upload');
+const multerUpload = require('./multerUpload');
 
 module.exports = {
     validateBody,
-    upload,
+    multerUpload,
 };
